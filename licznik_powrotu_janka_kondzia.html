@@ -1,0 +1,356 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Janek i Kondzio wracają za:</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap');
+
+    :root {
+      --bg: #19a319;
+      --star-yellow: #ffff66;
+      --star-white: #ffffff;
+      --title: #ffff33;
+      --orange1: #ffb84d;
+      --orange2: #ff6600;
+      --black: #000000;
+      --red1: #ff3333;
+      --red2: #cc0000;
+    }
+
+    html, body { height: 100%; margin: 0; }
+    body {
+      font-family: "Comic Sans MS", "Comic Sans", "Trebuchet MS", system-ui, sans-serif;
+      color: var(--title);
+      background:
+        radial-gradient(circle at 20% 30%, var(--star-yellow) 0 2px, transparent 3px 100%),
+        radial-gradient(circle at 70% 60%, var(--star-yellow) 0 2px, transparent 3px 100%),
+        radial-gradient(circle at 40% 80%, var(--star-yellow) 0 2.4px, transparent 3px 100%),
+        radial-gradient(circle at 85% 25%, var(--star-yellow) 0 2.2px, transparent 3px 100%),
+        radial-gradient(circle at 10% 70%, var(--star-white) 0 2px, transparent 3px 100%),
+        radial-gradient(circle at 60% 20%, var(--star-white) 0 2px, transparent 3px 100%),
+        var(--bg);
+      background-size: 220px 220px, 260px 260px, 300px 300px, 280px 280px, 240px 240px, 200px 200px, auto;
+      background-blend-mode: screen;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 12px 0 48px;
+    }
+
+    h1 {
+      text-align: center;
+      margin: 14px 0 10px;
+      font-weight: 700;
+      font-size: clamp(24px, 5.72vw, 52.8px);
+      line-height: 1.2;
+      color: var(--title);
+      text-shadow: 2px 2px 0 #156d15, 4px 4px 0 #0c3f0c;
+    }
+
+    .stage {
+      width: 100%;
+      max-width: 1400px;
+      display: grid;
+      grid-template-columns: 1fr minmax(520px, 900px) 1fr;
+      align-items: start;
+      gap: 24px;
+      padding: 0 28px;
+      margin-top: 6px;
+    }
+
+    .face {
+      justify-self: start;
+      max-height: 352px;
+      width: auto;
+      border: 3px solid #fff;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.6);
+    }
+
+    .right {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      justify-content: flex-start;
+      align-items: flex-end;
+    }
+
+    .dog {
+      display: block;
+      max-height: 176px;
+      width: auto;
+      border: 3px solid #fff;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.6);
+    }
+
+    .panel {
+      justify-self: center;
+      background: linear-gradient(var(--orange1), var(--orange2));
+      border: 2px solid #cc5f10;
+      box-shadow: 0 6px 0 #a94c0c;
+      color: #fffbd7;
+      text-align: center;
+      width: 100%;
+      padding: 20px 12px 26px;
+      border-radius: 4px;
+    }
+
+    .counter {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(90px, 1fr));
+      gap: 12px;
+      justify-items: center;
+    }
+
+    .tile {
+      display: grid;
+      place-items: center;
+      background: rgba(0,0,0,0.3);
+      border: 1px solid #fffbd7;
+      padding: 8px 6px 10px;
+      min-width: 90px;
+      border-radius: 4px;
+    }
+
+    .tlabel {
+      font-size: 14px;
+      color: #fffbd7;
+      letter-spacing: 1px;
+      margin-bottom: 5px;
+    }
+
+    .tvalue {
+      font-weight: 700;
+      font-size: clamp(31px, 7.04vw, 70px);
+      line-height: 1.05;
+      color: var(--title);
+      text-shadow: 2px 2px 0 #333;
+      transition: opacity .15s linear;
+    }
+
+    .footer {
+      text-align: center;
+      margin-top: 16px;
+      color: #fffbd7;
+      font-size: 13px;
+      text-shadow: 1px 1px 0 #0c3f0c;
+    }
+
+    /* nowy kontener środkowej kolumny */
+    .center-col {
+      width: 100%;
+    }
+
+    .mid-text {
+      max-width: 900px;
+      margin: 28px auto;
+      font-size: 20px;
+      line-height: 1.6;
+      color: #ffff33;
+      text-align: justify;
+      font-weight: 700;
+      text-shadow: 2px 2px 0 #000;
+      white-space: pre-line;
+    }
+
+    .audio-toggle {
+      position: fixed;
+      bottom: 16px;
+      right: 16px;
+      background: rgba(0,0,0,0.5);
+      border-radius: 50%;
+      width: 44px;
+      height: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      color: #fff;
+      font-size: 22px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.6);
+      user-select: none;
+    }
+
+    /* --- Retro Walt-style overrides --- */
+    .donate{ width:100%; display:flex; flex-direction:column; align-items:center; margin-top:28px; margin-bottom:6px; padding:0 16px; }
+    .donate .bar{
+      font-family: 'Luckiest Guy', Impact, 'Arial Black', sans-serif;
+      background: linear-gradient(#ffcc00, #ff6600);
+      color:#ff0;
+      border:2px solid #cc5f10;
+      box-shadow: 0 8px 0 #a94c0c, 0 2px 12px rgba(0,0,0,.35);
+      padding:16px 32px;
+      border-radius:4px;
+      font-size:clamp(26px, 3.6vw, 38px);
+      font-weight:800;
+      letter-spacing:1px;
+      display:inline-block;
+      width:auto;
+      text-align:center;
+      margin-bottom:16px;
+      text-shadow:2px 2px 0 #000;
+      position:relative;
+    }
+    .donate .bar::after{
+      content:"";
+      position:absolute;
+      left:10%;
+      right:10%;
+      bottom:6px;
+      height:3px;
+      background:#ffeb3b;
+    }
+    .btn-row{ display:flex; gap:28px; flex-wrap:wrap; justify-content:center; margin-top:12px; }
+    .donate-btn{
+      font-family: Georgia, "Times New Roman", serif;
+      background: linear-gradient(to bottom, var(--red1), var(--red2));
+      color:#fff;
+      text-decoration:none;
+      padding:18px 34px;
+      font-weight:800;
+      font-size:clamp(20px, 2.8vw, 26px);
+      border:2px solid #5a0000;
+      box-shadow: inset 0 5px 0 rgba(255,255,255,.25), inset 0 -7px 0 rgba(0,0,0,.28), 0 8px 0 #5a0000, 0 8px 14px rgba(0,0,0,.35);
+      text-shadow:0 2px 1px rgba(0,0,0,.35);
+      border-radius:0;
+      display:inline-block;
+      min-width:200px;
+      text-align:center;
+    }
+    .donate-btn:hover{ filter:brightness(1.05); transform:translateY(-1px); }
+    .donate-btn:active{ transform:translateY(1px); box-shadow: inset 0 4px 0 rgba(255,255,255,.25), inset 0 -6px 0 rgba(0,0,0,.25), 0 6px 0 #5a0000, 0 6px 10px rgba(0,0,0,.3); }
+  </style>
+</head>
+<body>
+  <h1>Janek i Kondzio wracają za:</h1>
+
+  <div class="stage">
+    <div>
+      <img class="face left" src="konidzo.jpg" alt="Kondzio" />
+    </div>
+
+    <!-- Środkowa kolumna: licznik + przeniesiony tekst -->
+    <div class="center-col">
+      <div class="panel" aria-live="polite" aria-atomic="true">
+        <div class="counter">
+          <div class="tile"><div class="tlabel">MIESIĘCY</div><div id="mies" class="tvalue">--</div></div>
+          <div class="tile"><div class="tlabel">TYGODNI</div><div id="tyg" class="tvalue">--</div></div>
+          <div class="tile"><div class="tlabel">DNI</div><div id="dni" class="tvalue">--</div></div>
+          <div class="tile"><div class="tlabel">GODZIN</div><div id="godz" class="tvalue">--</div></div>
+          <div class="tile"><div class="tlabel">SEKUND</div><div id="sek" class="tvalue">--</div></div>
+        </div>
+        <div class="footer">Cel: 13 lutego 2026, 00:00 (czas lokalny przeglądarki)</div>
+      </div>
+
+      <!-- Tekst przeniesiony do środka, tuż pod licznikiem -->
+      <div class="mid-text">
+Janek i Kondzio 
+Koledzy, alkusy, narkomani i przyjaciele. Zawsze kolezenscy i chetni do pomocy, zostawili zajebistych ziomali we wroclawiu żeby pic drinki z palemka tarmosić tajki  i slizgac się na zjezdalni do własnego basenu. Zenada w chuj. Będziemy na was czekac z utesknienem i updateowac każde nowe smieszne co się pojawi żebyście nie mieli takiego fomo. Wysylajcie zdjęcia, głaskajcie blondyne i nie zasnijcie w rowie bo wam mapla do ucha nasika.
+      </div>
+    </div>
+
+    <div class="right">
+      <img class="face right" src="janek.jpg" alt="Janek" />
+      <img class="dog" src="piesek.jpg" alt="Piesek" />
+    </div>
+  </div>
+
+  <!-- Baner wsparcia -->
+  <section class="donate">
+    <div class="bar">W tym czasie - pomóż im przeżyć</div>
+    <div class="btn-row">
+      <a class="donate-btn" href="https://thirdeyeszmato.pl/pl/strona-glowna/29-yann-mamusiu-ratuj-pre-order.html" target="_blank" rel="noopener">Wesprzyj Janka</a>
+      <a class="donate-btn" href="https://accommodio.eu/" target="_blank" rel="noopener">Wesprzyj Kondzia</a>
+    </div>
+  </section>
+
+  <div class="bottom-section">
+    <img src="trasa.jpg" alt="Trasa" />
+  </div>
+
+  <audio id="bgm" src="audio.mp3"></audio>
+  <div id="toggleBtn" class="audio-toggle">🔇</div>
+
+  <script>
+    (function(){
+      const target = new Date(2026, 1, 13, 0, 0, 0, 0);
+      const $ = (id) => document.getElementById(id);
+      const out = { m: $('mies'), w: $('tyg'), d: $('dni'), h: $('godz'), s: $('sek') };
+      const footer = document.querySelector('.footer');
+
+      const MS = {
+        second: 1000,
+        minute: 60 * 1000,
+        hour:   60 * 60 * 1000,
+        day:    24 * 60 * 60 * 1000,
+        week:   7  * 24 * 60 * 60 * 1000,
+        month:  (365.2425/12) * 24 * 60 * 60 * 1000
+      };
+
+      const pad = (n) => String(n).padStart(2, '0');
+
+      function tick(){
+        const now = new Date();
+        let diff = target - now;
+
+        if (diff <= 0) {
+          out.m.textContent = out.w.textContent = out.d.textContent = out.h.textContent = '00';
+          out.s.textContent = '00';
+          footer.textContent = 'To już dziś! Miłego powrotu!';
+          out.s.style.opacity = 1;
+          return;
+        }
+
+        const months = Math.floor(diff / MS.month); diff -= months * MS.month;
+        const weeks  = Math.floor(diff / MS.week);  diff -= weeks  * MS.week;
+        const days   = Math.floor(diff / MS.day);   diff -= days   * MS.day;
+        const hours  = Math.floor(diff / MS.hour);  diff -= hours  * MS.hour;
+        const minutes= Math.floor(diff / MS.minute);diff -= minutes* MS.minute;
+        const seconds= Math.floor(diff / MS.second);
+
+        out.m.textContent = pad(months);
+        out.w.textContent = pad(weeks);
+        out.d.textContent = pad(days);
+        out.h.textContent = pad(hours);
+        out.s.textContent = pad(seconds);
+
+        out.s.style.opacity = (seconds % 2 === 0) ? 1 : 0.35;
+      }
+
+      function start(){
+        tick();
+        const now = performance.now();
+        const delay = 1000 - (now % 1000);
+        setTimeout(function loop(){
+          tick();
+          setTimeout(loop, 1000);
+        }, delay);
+      }
+
+      start();
+
+      // AUDIO
+      const audio = document.getElementById('bgm');
+      const toggle = document.getElementById('toggleBtn');
+      let started = false;
+
+      toggle.addEventListener('click', ()=>{
+        if (!started){
+          audio.currentTime = 10; // start od 10 sekundy
+          audio.play();
+          started = true;
+          toggle.textContent = '🔊';
+        } else if(audio.paused){
+          audio.play();
+          toggle.textContent = '🔊';
+        } else {
+          audio.pause();
+          toggle.textContent = '🔇';
+        }
+      });
+    })();
+  </script>
+</body>
+</html>
