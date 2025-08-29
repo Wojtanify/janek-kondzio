@@ -48,21 +48,17 @@
       line-height: 1.2;
       color: var(--title);
       text-shadow: 2px 2px 0 #156d15, 4px 4px 0 #0c3f0c;
-      padding: 0 16px;
-      box-sizing: border-box;
-      width: 100%;
     }
 
     .stage {
       width: 100%;
-      max-width: 1200px;
+      max-width: 1400px;
       display: grid;
       grid-template-columns: 1fr minmax(520px, 900px) 1fr;
       align-items: start;
       gap: 24px;
       padding: 0 28px;
       margin-top: 6px;
-      box-sizing: border-box;
     }
 
     .face {
@@ -71,8 +67,6 @@
       width: auto;
       border: 3px solid #fff;
       box-shadow: 0 4px 12px rgba(0,0,0,0.6);
-      max-width: 100%;
-      height: auto;
     }
 
     .right {
@@ -89,8 +83,6 @@
       width: auto;
       border: 3px solid #fff;
       box-shadow: 0 4px 12px rgba(0,0,0,0.6);
-      max-width: 100%;
-      height: auto;
     }
 
     .panel {
@@ -102,13 +94,12 @@
       text-align: center;
       width: 100%;
       padding: 20px 12px 26px;
-      border-radius: 8px;
-      box-sizing: border-box;
+      border-radius: 4px;
     }
 
     .counter {
       display: grid;
-      grid-template-columns: repeat(5, minmax(100px, 1fr));
+      grid-template-columns: repeat(5, minmax(90px, 1fr));
       gap: 12px;
       justify-items: center;
     }
@@ -119,9 +110,8 @@
       background: rgba(0,0,0,0.3);
       border: 1px solid #fffbd7;
       padding: 8px 6px 10px;
-      border-radius: 6px;
-      width: 100%;
-      box-sizing: border-box;
+      min-width: 90px;
+      border-radius: 4px;
     }
 
     .tlabel {
@@ -148,21 +138,21 @@
       text-shadow: 1px 1px 0 #0c3f0c;
     }
 
-    .center-col { width: 100%; }
+    /* nowy kontener środkowej kolumny */
+    .center-col {
+      width: 100%;
+    }
 
     .mid-text {
       max-width: 900px;
       margin: 28px auto;
-      font-size: clamp(16px, 2.4vw, 20px);
+      font-size: 20px;
       line-height: 1.6;
       color: #ffff33;
-      text-align: left;
+      text-align: justify;
       font-weight: 700;
       text-shadow: 2px 2px 0 #000;
       white-space: pre-line;
-      padding: 0 8px;
-      box-sizing: border-box;
-      overflow-wrap: anywhere;
     }
 
     .audio-toggle {
@@ -181,11 +171,10 @@
       font-size: 22px;
       box-shadow: 0 2px 6px rgba(0,0,0,0.6);
       user-select: none;
-      z-index: 10;
     }
 
     /* --- Retro Walt-style overrides --- */
-    .donate{ width:100%; display:flex; flex-direction:column; align-items:center; margin-top:28px; margin-bottom:6px; padding:0 16px; box-sizing: border-box; }
+    .donate{ width:100%; display:flex; flex-direction:column; align-items:center; margin-top:28px; margin-bottom:6px; padding:0 16px; }
     .donate .bar{
       font-family: 'Luckiest Guy', Impact, 'Arial Black', sans-serif;
       background: linear-gradient(#ffcc00, #ff6600);
@@ -193,18 +182,16 @@
       border:2px solid #cc5f10;
       box-shadow: 0 8px 0 #a94c0c, 0 2px 12px rgba(0,0,0,.35);
       padding:16px 32px;
-      border-radius:8px;
-      font-size:clamp(22px, 4.2vw, 38px);
+      border-radius:4px;
+      font-size:clamp(26px, 3.6vw, 38px);
       font-weight:800;
       letter-spacing:1px;
       display:inline-block;
       width:auto;
-      max-width: 100%;
       text-align:center;
       margin-bottom:16px;
       text-shadow:2px 2px 0 #000;
       position:relative;
-      box-sizing: border-box;
     }
     .donate .bar::after{
       content:"";
@@ -215,87 +202,25 @@
       height:3px;
       background:#ffeb3b;
     }
-    .btn-row{ display:flex; gap:16px; flex-wrap:wrap; justify-content:center; margin-top:12px; width:100%; }
+    .btn-row{ display:flex; gap:28px; flex-wrap:wrap; justify-content:center; margin-top:12px; }
     .donate-btn{
       font-family: Georgia, "Times New Roman", serif;
       background: linear-gradient(to bottom, var(--red1), var(--red2));
       color:#fff;
       text-decoration:none;
-      padding:14px 22px;
+      padding:18px 34px;
       font-weight:800;
-      font-size:clamp(16px, 3.4vw, 22px);
+      font-size:clamp(20px, 2.8vw, 26px);
       border:2px solid #5a0000;
       box-shadow: inset 0 5px 0 rgba(255,255,255,.25), inset 0 -7px 0 rgba(0,0,0,.28), 0 8px 0 #5a0000, 0 8px 14px rgba(0,0,0,.35);
       text-shadow:0 2px 1px rgba(0,0,0,.35);
-      border-radius:8px;
+      border-radius:0;
       display:inline-block;
       min-width:200px;
       text-align:center;
-      box-sizing: border-box;
     }
     .donate-btn:hover{ filter:brightness(1.05); transform:translateY(-1px); }
     .donate-btn:active{ transform:translateY(1px); box-shadow: inset 0 4px 0 rgba(255,255,255,.25), inset 0 -6px 0 rgba(0,0,0,.25), 0 6px 0 #5a0000, 0 6px 10px rgba(0,0,0,.3); }
-
-    .bottom-section {
-      width: 100%;
-      max-width: 1200px;
-      padding: 8px 16px 0;
-      box-sizing: border-box;
-    }
-    .bottom-section img {
-      width: 100%;
-      height: auto;
-      display: block;
-      border: 3px solid #fff;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.6);
-      border-radius: 8px;
-    }
-
-    /* --- Responsywność --- */
-    @media (max-width: 1024px) {
-      .stage {
-        grid-template-columns: 1fr minmax(420px, 1.2fr) 1fr;
-        gap: 16px;
-        padding: 0 16px;
-      }
-      .counter {
-        grid-template-columns: repeat(5, minmax(90px, 1fr));
-        gap: 10px;
-      }
-    }
-
-    @media (max-width: 820px) {
-      .stage {
-        grid-template-columns: 1fr;
-        grid-template-areas:
-          "center"
-          "left"
-          "right";
-        justify-items: center;
-      }
-      .stage > div:first-child { order: 2; } /* lewy obrazek pod licznikiem */
-      .right { order: 3; align-items: center; }
-      .face { max-height: 320px; }
-      .dog  { max-height: 160px; }
-      .counter { grid-template-columns: repeat(3, minmax(90px, 1fr)); }
-      .mid-text { margin-top: 18px; }
-    }
-
-    @media (max-width: 560px) {
-      .counter { grid-template-columns: repeat(2, minmax(120px, 1fr)); }
-      .tlabel { font-size: 12px; }
-      .tvalue { font-size: clamp(28px, 10vw, 56px); }
-      .panel { padding: 16px 10px 20px; }
-      .right { gap: 8px; }
-      .face { max-height: 260px; }
-      .dog  { max-height: 140px; }
-      .btn-row { gap: 12px; }
-      .donate-btn { min-width: 150px; padding: 12px 16px; }
-    }
-
-    @media (max-width: 380px) {
-      .counter { grid-template-columns: 1fr; }
-    }
   </style>
 </head>
 <body>
@@ -306,6 +231,7 @@
       <img class="face left" src="konidzo.jpg" alt="Kondzio" />
     </div>
 
+    <!-- Środkowa kolumna: licznik + przeniesiony tekst -->
     <div class="center-col">
       <div class="panel" aria-live="polite" aria-atomic="true">
         <div class="counter">
@@ -318,6 +244,7 @@
         <div class="footer">Cel: 13 lutego 2026, 00:00 (czas lokalny przeglądarki)</div>
       </div>
 
+      <!-- Tekst przeniesiony do środka, tuż pod licznikiem -->
       <div class="mid-text">
 Janek i Kondzio 
 Koledzy, alkusy, narkomani i przyjaciele. Zawsze kolezenscy i chetni do pomocy, zostawili zajebistych ziomali we wroclawiu żeby pic drinki z palemka tarmosić tajki  i slizgac się na zjezdalni do własnego basenu. Zenada w chuj. Będziemy na was czekac z utesknienem i updateowac każde nowe smieszne co się pojawi żebyście nie mieli takiego fomo. Wysylajcie zdjęcia, głaskajcie blondyne i nie zasnijcie w rowie bo wam mapla do ucha nasika.
@@ -330,6 +257,7 @@ Koledzy, alkusy, narkomani i przyjaciele. Zawsze kolezenscy i chetni do pomocy, 
     </div>
   </div>
 
+  <!-- Baner wsparcia -->
   <section class="donate">
     <div class="bar">W tym czasie - pomóż im przeżyć</div>
     <div class="btn-row">
@@ -343,7 +271,7 @@ Koledzy, alkusy, narkomani i przyjaciele. Zawsze kolezenscy i chetni do pomocy, 
   </div>
 
   <audio id="bgm" src="audio.mp3"></audio>
-  <div id="toggleBtn" class="audio-toggle" aria-label="Przełącz audio" title="Przełącz audio">🔇</div>
+  <div id="toggleBtn" class="audio-toggle">🔇</div>
 
   <script>
     (function(){
@@ -414,18 +342,12 @@ Koledzy, alkusy, narkomani i przyjaciele. Zawsze kolezenscy i chetni do pomocy, 
           audio.play();
           started = true;
           toggle.textContent = '🔊';
-          toggle.setAttribute('aria-label', 'Wycisz audio');
-          toggle.setAttribute('title', 'Wycisz audio');
         } else if(audio.paused){
           audio.play();
           toggle.textContent = '🔊';
-          toggle.setAttribute('aria-label', 'Wycisz audio');
-          toggle.setAttribute('title', 'Wycisz audio');
         } else {
           audio.pause();
           toggle.textContent = '🔇';
-          toggle.setAttribute('aria-label', 'Włącz audio');
-          toggle.setAttribute('title', 'Włącz audio');
         }
       });
     })();
